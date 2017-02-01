@@ -1,0 +1,34 @@
+
+INSERT INTO Escuela ( nombre ) VALUES
+( 'ESCOM' ), ( 'ESCA' ), ( 'UPIICSA' ), ('ESIT' );
+
+INSERT INTO Carrera (nombre, duracion, idEscuela) VALUES
+( 'ING. EN SISTEMAS COMPUTACIONALES', 8, ( SELECT idEscuela FROM Escuela WHERE nombre = 'ESCOM' ) ),
+( 'ING. EN QUIMICA TEXTIL', 8, ( SELECT idEscuela FROM Escuela WHERE nombre = 'ESIT' ) ),
+( 'LIC. EN NEGOCIOS INTERNACIONLES', 8, ( SELECT idEscuela FROM Escuela WHERE nombre = 'ESCA' ) ),
+( 'ING. EN ADMINISTRACION INDUSTRIAL', 8, ( SELECT idEscuela FROM Escuela WHERE nombre = 'UPIICSA' ) );
+
+
+INSERT INTO Alumno ( boleta, nombre, apellidoPaterno, apellidoMaterno, email, idCarrera ) VALUES
+('2013600985', 'J', 'L', 'Z', 'm@m', ( select idCarrera FROM Carrera WHERE nombre = 'ING. EN SISTEMAS COMPUTACIONALES' ) ) ,
+
+('201363xxxx', 'D', 'L', 'Z', 'm@m', ( select idCarrera FROM Carrera WHERE nombre = 'ING. EN ADMINISTRACION INDUSTRIAL' ) );
+
+--Ponerlas en Mysql--
+INSERT INTO Calificacion (calificacion,idAlumno)VALUES ('9',(select idAlumno FROM Alumno where nombre='9')),
+('10',(select idAlumno FROM Alumno where nombre='10'));
+
+INSERT INTO Examen(periodo,fecha,idMateria)VALUES ('1','10/04/1994',(select idMateria FROM Examen where nombre ='Matematicas' )),
+('2','11/05/1995',(select idMateria FROM Examen where nombre ='Logica' )),
+('6','10/04/1999',(select idMateria FROM Examen where nombre ='Ingles' )),
+('8','10/04/2006',(select idMateria FROM Examen where nombre ='Historia' ));
+
+INSERT INTO Materia(nombre,idAlumno)VALUES ('Matematicas',(select idAlumno  FROM Alumno where nombre = '1')),
+('Ingles',(select idAlumno  FROM Alumno where nombre = '2')),
+('Web',(select idAlumno  FROM Alumno where nombre = '3')),
+('Aleman',(select idAlumno  FROM Alumno where nombre = '2'));
+
+INSERT INTO Pregunta(pregunta,idExamen)VALUES('¿Como te llamas?',(select idExamen FROM Pregunta where nombre = '1' );
+
+
+INSERT INTO Respuesta();
